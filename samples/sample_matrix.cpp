@@ -29,5 +29,19 @@ void main()
   cout << "Matrix b = " << endl << b << endl;
   cout << "Matrix c = a + b" << endl << c << endl;
   cout << "Matrix d = a - b " << endl << a << endl;
+
+  TVector<int> av(1,3), bv(3,1), res(4);
+
+  av[3]=1;
+  bv[1]=bv[2] = bv[3]= 1;
+
+  res = av-bv;
+
+  cout << "Vector av = " << endl << av << endl;
+  cout << "Vector bv = " << endl << bv << endl;
+  cout << "Vector res= av - bv" << endl << res << endl;
+
+
+
 }
 //---------------------------------------------------------------------------
