@@ -255,9 +255,9 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 	else 
 	{
 		TVector<ValType> res (*this);
-		for ( int i = (v.StartIndex - StartIndex); i < Size; i++ )
+		for ( int i = (v.StartIndex - StartIndex), k = 0; i < Size;k++, i++ )
 		{
-			res.pVector[i] = pVector[i] - v.pVector[i];
+			res.pVector[i] = pVector[i] - v.pVector[k];
 		}
 		
 		return res;
@@ -336,18 +336,12 @@ TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 template <class ValType> // конструктор копирования
 TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt):TVector<TVector<ValType> >(mt) 
 {
-	TVector<TVector<ValType>> a (mt);
-	Size = a.GetSize();
-	StartIndex = 0;
 }
 
 template <class ValType> // конструктор преобразования типа
 TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 TVector<TVector<ValType> >(mt) 
 {
-    TVector<TVector<ValType>> a (mt);
-    Size = a.GetSize();
-	StartIndex = 0;
 }
 
 template <class ValType> // сравнение
