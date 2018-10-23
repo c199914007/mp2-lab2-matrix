@@ -7,41 +7,109 @@
 
 #include <iostream>
 #include "utmatrix.h"
+#include <time.h>
 //---------------------------------------------------------------------------
 
 void main()
+{ int n , Key, f;
+setlocale(LC_ALL, "Russian");
+cout << "Тестирование программ поддержки представления треугольных матриц"
+	<< endl;
+L:
+cout << "Введите размер матриц а и b";
+cout << endl;
+cin >> n;
+if (n < MAX_MATRIX_SIZE)
 {
-  TMatrix<int> a(7), b(7), c(7), d(7);
-  int i, j;
+	TMatrix<int > a(n);
+	TMatrix<int > b(n);
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  1;
-      b[i][j] = 6;
-    }
-  c = a + b;
-  d = a - b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
-  cout << "Matrix d = a - b " << endl << a << endl;
+	cout << "Введите 1 , если хотите набирать матрицы самостоятельно, 2, если хотите ввести произвольные числа: ";
+	cout << endl;
 
-  TVector<int> av(1,3), bv(3,1), res(4);
+	cin >> Key;
+	switch (Key)
+	{
+	case 1:
+		{ 
+			cout << "   a:"<<endl;
+			for ( int i = 0; i < n; i++)
+				for (int j = i; j< n; j++)
+					cin >> a[i][j];
 
-  av[3]=1;
-  bv[1]=bv[2] = bv[3]= 1;
+			cout << "   b:" << endl;
+			for ( int i = 0; i < n; i++)
+				for (int j = i; j< n; j++)
+					cin >> b[i][j];
+			break;
+		}
+	case 2:
+		{
+			srand(time(NULL));
+			for ( int i = 0; i < n; i++)
+				for (int j = i; j< n; j++)
+				{
+					a[i][j] = (int) rand()%245;
+					b[i][j] = (int) rand()%137;
+				}
+				break;
+		}
+	default :
+		{  Key = 0;
+		cout << "Что-то вы не так поняли в инструкции!";
+		cout << endl;
+		}
+	}
+	if (Key != 0)
+	{
+	cout << "a = " << endl;
+	cout << a << endl;
+	cout << "b = " << endl;
+	cout << b << endl;
 
-  res = av-bv;
-
-  cout << "Vector av = " << endl << av << endl;
-  cout << "Vector bv = " << endl << bv << endl;
-  cout << "Vector res= av - bv" << endl << res << endl;
-
-
-
+	cout << "Что прикажете сделать?";
+	cout << endl;
+	cout << "1: a + b";
+	cout << endl;
+	cout << "2: a - b";
+	cout << endl;
+	cout << "3 : b - a";
+	cout << endl;
+	cin >> Key;
+	switch (Key)
+	{
+	case 1:
+		{
+			cout << " a + b = " << endl ;
+			cout << a+b<< endl;
+			break;
+		}
+	case 2:
+		{
+			cout << " a + b = " << endl ;
+			cout << a-b<< endl;
+			break;
+		}
+	case 3:
+		{
+			cout << " b - a = " << endl ;
+			cout << b - a << endl;
+			break;
+		}
+	default:
+		{
+			Key = 0;
+			cout << "Следите за вводом!";
+			cout << endl;
+		}
+	}
+	}
+	cout << "Нажмите 1, чтобы попробовать снова , или нажмите 2, чтобы уйти: " ;
+	cin >> f;
+	if (f == 1)
+		goto L;
+	else cout << "Пока пока!";
+	cout << endl;
+}
 }
 //---------------------------------------------------------------------------
