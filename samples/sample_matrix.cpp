@@ -33,14 +33,10 @@ if (n < MAX_MATRIX_SIZE)
 	case 1:
 		{ 
 			cout << "   a:"<<endl;
-			for ( int i = 0; i < n; i++)
-				for (int j = i; j< n; j++)
-					cin >> a[i][j];
+			cin >> a;
 
 			cout << "   b:" << endl;
-			for ( int i = 0; i < n; i++)
-				for (int j = i; j< n; j++)
-					cin >> b[i][j];
+			cin >> b;
 			break;
 		}
 	case 2:
